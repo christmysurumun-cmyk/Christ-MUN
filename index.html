@@ -1,0 +1,571 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Christ Public School MUN</title>
+    
+    <style>
+        /* --- 1. General Setup --- */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7f6;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1, h2, h3 {
+            color: #004a99; /* A professional blue */
+            line-height: 1.2;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        h2::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: #d4a017; /* A gold accent */
+            margin: 10px auto 0;
+        }
+
+        /* --- 2. Header & Navigation --- */
+        header {
+            background-color: #ffffff;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #004a99;
+        }
+
+        .logo span {
+            color: #d4a017;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        nav li {
+            margin-left: 25px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #d4a017;
+        }
+
+        /* --- 3. Hero Section (WITH VIDEO BACKGROUND) --- */
+        .hero {
+            height: 85vh;
+            position: relative; /* Crucial for positioning the video */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #ffffff;
+            padding: 20px;
+            overflow: hidden; /* Ensures video doesn't bleed out */
+        }
+        
+        #hero-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: 1;
+            transform: translate(-50%, -50%);
+            object-fit: cover; /* Covers the whole area */
+        }
+
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(2, 67, 133, 0.7); /* Dark blue overlay */
+            z-index: 2;
+        }
+
+        /* Hero content container */
+        .hero-content {
+            position: relative;
+            z-index: 3; /* Places text on top of the overlay */
+        }
+
+        /* --- ANIMATION 1: Hero Text Fade-in --- */
+        .hero h1 {
+            font-size: 3.5rem;
+            color: #ffffff;
+            margin: 0;
+            animation: fadeInDown 1.5s ease-out;
+        }
+
+        .hero h2 {
+            font-size: 2.5rem; /* Slightly smaller for balance */
+            color: #ffffff;
+            margin: 10px 0 0 0;
+            animation: fadeInDown 1.5s ease-out 0.3s;
+            opacity: 0;
+            animation-fill-mode: forwards;
+        }
+         
+        .hero h2::after {
+            display: none; /* Remove underline in hero */
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin: 15px 0 30px 0;
+            animation: fadeInUp 1.5s ease-out 0.8s;
+            animation-fill-mode: forwards; /* Keeps it visible */
+            opacity: 0; /* Start invisible */
+        }
+
+        .cta-button {
+            background-color: #d4a017;
+            color: #ffffff;
+            padding: 12px 25px;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            animation: fadeInUp 1.5s ease-out 1.1s;
+            animation-fill-mode: forwards;
+            opacity: 0;
+        }
+
+        .cta-button:hover {
+            background-color: #b38600;
+            transform: translateY(-3px); /* Button lift effect */
+        }
+
+        /* --- 4. About Section --- */
+        #about {
+            background-color: #ffffff;
+            padding: 60px 20px;
+        }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            flex-wrap: wrap; /* Added for responsiveness */
+        }
+
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .about-image {
+            flex: 1;
+            max-width: 500px;
+            min-width: 300px;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        }
+
+        /* --- 5. NEW "Why Join?" Section --- */
+        #why-join {
+            padding: 60px 20px;
+            background-color: #f4f7f6; /* Off-white */
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .feature-item {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .feature-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+        }
+        
+        .feature-item h3 {
+            font-size: 1.4rem;
+            margin-top: 15px;
+            margin-bottom: 10px;
+        }
+        
+        /* Simple icon styling - replace with real icons if you have them */
+        .feature-item .icon {
+            font-size: 2.5rem;
+            color: #d4a017;
+        }
+
+
+        /* --- 6. Statistics Section --- */
+        #stats {
+            background-color: #004a99;
+            color: #ffffff;
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        .stats-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            flex-basis: 200px;
+            margin: 20px;
+        }
+
+        .stat-item .number {
+            font-size: 3.5rem;
+            font-weight: bold;
+            color: #d4a017;
+        }
+
+        .stat-item .label {
+            font-size: 1.2rem;
+            margin-top: 5px;
+        }
+
+        /* --- 7. Committees Section --- */
+        #committees {
+            padding: 60px 20px;
+            background: #ffffff;
+        }
+
+        .committee-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .committee-card {
+            background: #fdfdfd; /* Slightly off-white */
+            border: 1px solid #eee;
+            border-radius: 8px;
+            overflow: hidden;
+            text-align: center;
+            padding: 30px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .committee-card:hover {
+            transform: translateY(-10px); /* Card lifts up */
+            box-shadow: 0 10px 25px rgba(0,0,0,0.12); /* Shadow becomes larger */
+        }
+
+        .committee-card h3 {
+            font-size: 1.5rem;
+            margin-top: 0;
+        }
+
+        .committee-card p {
+            font-size: 0.95rem;
+            color: #555;
+        }
+        
+        .committee-card .agenda {
+            font-style: italic;
+            font-weight: 600;
+            color: #004a99;
+            margin-top: 15px;
+        }
+
+        /* --- 8. Registration Section --- */
+        #register {
+            background-color: #f4f7f6;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        #register p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 30px auto;
+        }
+
+        /* --- 9. Footer --- */
+        footer {
+            background-color: #004a99;
+            color: #f4f4f4;
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        footer p {
+            margin: 5px 0;
+        }
+        
+        /* --- 10. Responsive Design --- */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .hero h2 {
+                font-size: 1.8rem;
+            }
+            .about-content {
+                flex-direction: column;
+            }
+        }
+
+
+        /* --- 11. Keyframe Animations --- */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">Christ <span>MUN</span> 2025</div>
+        <nav>
+            <ul>
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#why-join">Why Join?</a></li>
+                <li><a href="#committees">Committees</a></li>
+                <li><a href="https://forms.gle/VisA422baTmC2LYK7" target="_blank">Register</a></li>            
+                </ul>
+        </nav>
+    </header>
+
+    <section class="hero" id="hero">
+        
+        <video autoplay loop muted playsinline id="hero-video">
+            <source src="intro.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        
+        <div class="video-overlay"></div>
+        
+        <div class="hero-content">
+             <h1>Christ Public School</h1>
+            <h2>Model United Nations 2025</h2>
+            <p>Debate. Deliberate. Discover.</p>
+            <a href="https://forms.gle/VisA422baTmC2LYK7" class="cta-button" target="_blank">Register Now</a>
+        </div>
+    </section>
+
+    <section id="about" class="container">
+        <h2>About Christ-MUN</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <h3>Welcome, Future Diplomats!</h3>
+                <p>Christ Public School is proud to host its <strong>annual Model United Nations conference</strong>. MUN is an academic simulation where students step into the shoes of ambassadors from UN member states to debate current global issues.</p>
+                <p>Our mission at Christ-MUN is to provide a platform for young leaders to develop their skills in public speaking, diplomacy, research, and critical thinking. Join us for a weekend of inspiring debate and collaborative problem-solving.</p>
+            </div>
+            <div class="about-image">
+                <img src="img.jpg" alt="Students debating in a Model UN conference">
+            </div>
+        </div>
+    </section>
+    
+    <section id="why-join" class="container">
+        <h2>Why Join Christ-MUN?</h2>
+        <div class="features-grid">
+            <div class="feature-item">
+                <div class="icon">🏆</div> <h3>Develop Key Skills</h3>
+                <p>Enhance your public speaking, negotiation, and research abilities in a competitive yet supportive environment.</p>
+            </div>
+            <div class="feature-item">
+                <div class="icon">🌍</div> <h3>Meet New People</h3>
+                <p>Connect and network with hundreds of like-minded students and future leaders from various schools.</p>
+            </div>
+            <div class="feature-item">
+                <div class="icon"> gavel </div> <h3>Expert Panels</h3>
+                <p>Our committees are moderated by an experienced and dedicated secretariat, ensuring high-quality debate.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="stats">
+        <div class="stats-container container">
+            <div class="stat-item">
+                <div class="number" data-target="50">0</div>
+                <div class="label">Delegates</div>
+            </div>
+            <div class="stat-item">
+                <div class="number" data-target="5">0</div>
+                <div class="label">Committees</div>
+            </div>
+            <div class="stat-item">
+                <div class="number" data-target="10">0</div>
+                <div class="label">Countries Represented</div>
+            </div>
+            <div class="stat-item">
+                <div class="number" data-target="1">0</div>
+                <div class="label">Days of Debate</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="committees" class="container">
+        <h2>Our Committees</h2>
+        <div class="committee-grid">
+            <div class="committee-card">
+                <h3>UN Security Council (UNSC)</h3>
+                <p>The foremost council for maintaining international peace and security.</p>
+                
+            </div>
+            
+            <div class="committee-card">
+                <h3>World Health Organization (WHO)</h3>
+                <p>Directing and coordinating international health within the United Nations system.</p>
+                
+            </div>
+
+            <div class="committee-card">
+                <h3>UN Development Programme (UNDP)</h3>
+                <p>Focused on helping countries eliminate poverty and achieve sustainable development.</p>
+               
+            </div>
+
+            <div class="committee-card">
+                <h3>Disarmament and International Security (DISEC)</h3>
+                <p>International security, arms control, and global disarmament efforts.</p>
+               
+            </div>
+
+            <div class="committee-card">
+                <h3>UN Human Rights Council (UNHRC)</h3>
+                <p>Responsible for strengthening the promotion and protection of human rights globally.</p>
+                
+            </div>
+
+<div class="committee-card">
+                <h3>Scan to Register!</h3>
+
+               <div class="about-image">
+             <img src="qrcode.png" style="width:160px; height:auto;" alt="Christ MUN Logo">
+            </div>
+                
+            </div>
+
+        </div>
+    </section>
+
+    <section id="register" class="container">
+        <h2>Join Us</h2>
+        <p>Registration for Christ-MUN 2025 is now open! Whether you are a first-time delegate or a seasoned veteran, we welcome you to join our conference.</p>
+         <a href="https://forms.gle/VisA422baTmC2LYK7" class="cta-button" target="_blank">Delegate Registration Form</a>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Christ Public School. All rights reserved.</p>
+            <p>BEML Layout, Bogadi, Mysuru - 570026</p>
+            <p>Email: <a href="mailto:christmysuru.mun@gmail.com" style="color: #d4a017;">christmysuru.mun@gmail.com</a></p>
+        </div>
+    </footer>
+
+
+    <script>
+        function animate(obj, initVal, lastVal, duration) {
+            let startTime = null;
+
+            const step = (currentTime) => {
+                if (!startTime) {
+                    startTime = currentTime;
+                }
+                const progress = Math.min((currentTime - startTime) / duration, 1);
+                obj.innerHTML = Math.floor(progress * (lastVal - initVal) + initVal);
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                } else {
+                    obj.innerHTML = lastVal; // Ensure it ends on the exact target
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+
+        const statsSection = document.getElementById('stats');
+        const counters = document.querySelectorAll('.number');
+        let activated = false; // To make sure it only runs once
+
+        const observer = new IntersectionObserver((entries) => {
+            if (entries[0].isIntersecting && !activated) {
+                activated = true;
+                counters.forEach(counter => {
+                    const target = +counter.getAttribute('data-target');
+                    animate(counter, 0, target, 2000); // Animate from 0 to target in 2 seconds
+                });
+                observer.disconnect(); // Stop observing after animation
+            }
+        }, { threshold: 0.5 }); // Triggers when 50% of the section is visible
+
+        observer.observe(statsSection);
+    </script>
+
+</body>
+</html>
